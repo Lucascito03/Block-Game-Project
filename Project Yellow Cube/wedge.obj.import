@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/wedge.obj-9339a262bf96f35e585c14500e53a572.mesh"
+
+[deps]
+
+files=[ "res://.import/wedge.obj-9339a262bf96f35e585c14500e53a572.mesh" ]
+
+source_file="res://wedge.obj"
+dest_files=[ "res://.import/wedge.obj-9339a262bf96f35e585c14500e53a572.mesh", "res://.import/wedge.obj-9339a262bf96f35e585c14500e53a572.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286
