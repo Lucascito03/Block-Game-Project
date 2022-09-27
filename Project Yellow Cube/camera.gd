@@ -7,6 +7,8 @@ export(float, 0.0, 1.0) var sensitivity = 0.25
 # Mouse state
 var _mouse_position = Vector2(0.0, 0.0)
 var _total_pitch = 0.0
+var rightPressed = false
+
 
 # Movement state
 var _direction = Vector3(0.0, 0.0, 0.0)
@@ -38,21 +40,41 @@ func _input(event):
 			BUTTON_WHEEL_DOWN: # Decereases max velocity
 				_vel_multiplier = clamp(_vel_multiplier / 1.1, 0.2, 20)
 
-	# Receives key input
-	if event is InputEventKey:
-		match event.scancode:
-			KEY_W:
-				_w = event.pressed
-			KEY_S:
-				_s = event.pressed
-			KEY_A:
-				_a = event.pressed
-			KEY_D:
-				_d = event.pressed
-			KEY_Q:
-				_q = event.pressed
-			KEY_E:
-				_e = event.pressed
+	# Returns a position if the right mouse button is pressed
+	# Note: Make so camera movement keys work if true
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_RIGHT and event.pressed:
+			rightPressed = true
+		if event.button_index == BUTTON_RIGHT and not event.pressed:
+			rightPressed = false
+	
+	# Receives keyInput if rightPressed is true
+	if rightPressed == true:
+		if event is InputEventKey:
+			match event.scancode:
+				BUTTON_RIGHT, KEY_W:
+					_w = event.pressed
+				KEY_S:
+					_s = event.pressed
+				KEY_A:
+					_a = event.pressed
+				KEY_D:
+					_d = event.pressed
+				KEY_Q:
+					_q = event.pressed
+				KEY_E:
+					_e = event.pressed
+	# Terminates keyInput and stops moving camera when rightPressed is false
+	if rightPressed == false:
+		var _w = false
+		var _s = false
+		var _a = false
+		var _d = false
+		var _q = false
+		var _e = false
+		var _acceleration = 0
+		#^This code block currently doesn't work
+		#If someone could fix this it would be greatly appreciated
 
 # Updates mouselook and movement every frame
 func _process(delta):
