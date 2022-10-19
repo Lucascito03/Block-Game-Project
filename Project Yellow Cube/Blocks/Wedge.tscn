@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Blocks/Block.tscn" type="PackedScene" id=1]
+[ext_resource path="res://wedge.obj" type="ArrayMesh" id=2]
+
+[sub_resource type="ConvexPolygonShape" id=1]
+margin = 0.001
+points = PoolVector3Array( -1, 1, -1, -1, 1, 1, 1, -1, 1, 1, -1, -1, -1, -1, -1, -1, -1, 1 )
+
+[node name="Block" instance=ExtResource( 1 )]
+__meta__ = {
+"_editor_description_": "A simple wedge with a not so simply made collision shape."
+}
+
+[node name="Mesh" parent="RigidBody" index="0"]
+mesh = ExtResource( 2 )
+
+[node name="CollisionShape" parent="RigidBody" index="1"]
+shape = SubResource( 1 )

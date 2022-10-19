@@ -1,24 +1,15 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://camera.gd" type="Script" id=1]
-[ext_resource path="res://cube.gd" type="Script" id=2]
-[ext_resource path="res://cube.obj" type="ArrayMesh" id=3]
-[ext_resource path="res://cylinder.obj" type="ArrayMesh" id=4]
+[ext_resource path="res://Blocks/Cube.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Blocks/Wedge.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Blocks/Cylinder.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Blocks/Slab.tscn" type="PackedScene" id=5]
 
 [sub_resource type="PlaneMesh" id=7]
 
-[sub_resource type="SpatialMaterial" id=8]
-albedo_color = Color( 1, 0.815686, 0.0470588, 1 )
-
-[sub_resource type="BoxShape" id=6]
-
 [sub_resource type="StyleBoxFlat" id=9]
 bg_color = Color( 0.839216, 0.835294, 0.721569, 1 )
-
-[sub_resource type="SpatialMaterial" id=11]
-albedo_color = Color( 1, 0.815686, 0.0470588, 1 )
-
-[sub_resource type="CylinderShape" id=10]
 
 [node name="Spatial" type="Spatial"]
 
@@ -39,19 +30,8 @@ transform = Transform( 6, 0, 0, 0, 1, 0, 0, 0, 6, 0, 0, 0 )
 use_collision = true
 mesh = SubResource( 7 )
 
-[node name="Cube" type="RigidBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
-script = ExtResource( 2 )
-
-[node name="Mesh" type="CSGMesh" parent="Cube"]
-mesh = ExtResource( 3 )
-material = SubResource( 8 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Cube"]
-shape = SubResource( 6 )
-
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 4 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 8 )
 fov = 52.5473
 script = ExtResource( 1 )
 
@@ -66,13 +46,17 @@ margin_right = 1021.0
 margin_bottom = 588.0
 custom_styles/panel = SubResource( 9 )
 
-[node name="Cylinder" type="RigidBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
-script = ExtResource( 2 )
+[node name="Cube" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 
-[node name="Mesh" type="CSGMesh" parent="Cylinder"]
-mesh = ExtResource( 4 )
-material = SubResource( 11 )
+[node name="Block" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0, 0, 1, 0, 3.92858, 0 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Cylinder"]
-shape = SubResource( 10 )
+[node name="Cylinder" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.85985, 0 )
+
+[node name="Slab" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8509, 8.17638, 0 )
+
+[node name="Slab2" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8509, 10.7828, 0 )
